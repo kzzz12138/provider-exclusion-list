@@ -67,6 +67,7 @@ Stores exclusion-related information, such as exclusion type, specialty, exclusi
 ## Project Files
 
 ```text
+exclusion_db.md       # DB diagram
 clean.py              # Cleans and prepares raw data
 seed.py               # Imports cleaned data into the database
 schema.prisma         # Defines the database models and relationships
