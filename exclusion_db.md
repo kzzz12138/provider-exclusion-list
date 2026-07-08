@@ -53,9 +53,9 @@ erDiagram
         string status
     }
 
-    DATA_SOURCE ||--|{ IMPORT_LOG : has
-    DATA_SOURCE ||--|{ EXCLUSION_RECORD : provides
-    IMPORT_LOG ||--|{ EXCLUSION_RECORD : imports
-    EXCLUDED_PARTY ||--|{ EXCLUSION_RECORD : has
-    EXCLUDED_PARTY ||--|{ IDENTIFIER : has
+    DATA_SOURCE ||--o{ IMPORT_LOG : has
+    DATA_SOURCE ||--o{ EXCLUSION_RECORD : provides
+    IMPORT_LOG ||--o{ EXCLUSION_RECORD : imports
+    EXCLUDED_PARTY ||--o{ EXCLUSION_RECORD : has
+    EXCLUDED_PARTY ||--o{ IDENTIFIER : has
 ```
