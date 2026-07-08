@@ -76,3 +76,110 @@ identifiers.csv       # Identifier records such as NPI or UPIN
 parties.csv           # Excluded individual or business records
 sources.csv           # Source metadata
 import_logs.csv       # Import tracking information
+
+## How to Set Up This Project
+
+Follow these steps to run the exclusions database project on your own device.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/exclusions-database.git
+cd exclusions-database
+```
+
+### 2. Install Required Tools
+
+Make sure you have these installed:
+
+- Python
+- PostgreSQL
+- pgAdmin 4
+- Prisma
+
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment:
+
+```bash
+# Mac/Linux
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+```
+
+### 4. Install Python Packages
+
+```bash
+pip install pandas prisma python-dotenv
+```
+
+### 5. Create a PostgreSQL Database
+
+Open pgAdmin 4 and create a new database.
+
+Example database name:
+
+```text
+exclusions_database
+```
+
+### 6. Create a `.env` File
+
+In the main project folder, create a file named `.env`.
+
+Add your PostgreSQL connection URL:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/exclusions_database"
+```
+
+Replace:
+
+- `username` with your PostgreSQL username
+- `password` with your PostgreSQL password
+- `exclusions_database` with your database name
+
+### 7. Apply the Database Schema
+
+Run:
+
+```bash
+prisma generate
+prisma migrate dev
+```
+
+This uses `schema.prisma` to create the database tables in PostgreSQL.
+
+### 8. Clean the Raw Data
+
+```bash
+python clean.py
+```
+
+This creates the cleaned CSV files from the raw exclusion data.
+
+### 9. Import the Cleaned Data
+
+```bash
+python seed.py
+```
+
+This imports the cleaned CSV files into PostgreSQL.
+
+### 10. View the Database
+
+Open pgAdmin 4 and check the tables in your database.
+
+Main tables include:
+
+- `sources`
+- `import_logs`
+- `parties`
+- `identifiers`
+- `exclusions`
